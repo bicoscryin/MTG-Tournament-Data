@@ -205,3 +205,12 @@ cython_debug/
 marimo/_static/
 marimo/_lsp/
 __marimo__/
+
+# Variable files
+variables.py
+lcq_houston_10_17/lcq_houston_10_17_2025_variables.py
+rcq_houston_10_19_2025/rcq_houston_10_19_2025_variables.py
+rcq_baltimore_10_26_2025/rcq_baltimore_10_26_2025_variables.py
+rc_sao_paulo_11_01_2025/rc_sao_paulo_11_01_2025_variables.py
+rc_houston_10_18_2025/rc_houston_10_18_2025_variables.py
+lcq_houston_10_17_2025/lcq_houston_10_17_2025_variables
