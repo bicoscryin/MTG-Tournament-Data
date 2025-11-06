@@ -14,7 +14,7 @@ All data is pulled from melee.gg. This site is the official tournament organizer
 The biggest cleaning issue was with "Deck Name". It appears to me that each individual is able to label what their deck strategy is when they register for a tournament. This creates a ton of inconsitency in what each strategy actually means. Strategies in general are how a deck wants to use its cards to win a game. The three main categories for a strategy are agressive, value oriented and combo (using a combination of cards to win in one turn). Strategies can be strong versus one strategy  and weak to another. Each decks have cards that define the specific strategy it is using. I went through each of the major deck strategies and picked out 3 cards that categorized that decklist as a specific strategy. If a deck had all three of those cards in it, I renamed it to the most common title for that strategy. Spending more time on this could lead to a better consolidation of deck strategies. 
 Most tournaments are organized into two main phases: swiss and top 8. Swiss is a style of pairing two participants with similar win/loss records with each other. At the end of thse pairing, the 8 participants with the most wins get to go against each other in single elimination for the grand prize. This will scue data as most decks will not make it past the initial swiss phase. There are also many participants that will not complete the tournament if they lose two or three rounds. This can limit potential data points for underrepresented decks. This creates less round data as the tournament goes on.
 
-# What does the current meta look like?
+# Getting to know Popular Strategies
 The first thing we need to look at is what strategies are available for us to choose from. The two main ways that I looked at this is through popularity (total number of a specific strategy) and winrate of a specific strategy.
 
 
@@ -26,7 +26,7 @@ This graph gives us an idea of what the top 10 strategies at a tournament would 
 
 This graph shows the top 10 strategies that are winning at these tournaments. The most winning decks are Izzet Affinity, Amulet Titan, and Jeskai Blink. We need take a deeper look into why these decks are winning before we can make a descision. I'd like to highlight that Esper Goryo's and Izzet Prowess are missing from this graph despite being a very popular strategy choice. This could indicate that popular strategies are actually detrimental to your success since people are expecting that strategy to show up at the tournament.
 
-# Choosing a Deck
+# Choosing a Strategy
 
 ![Popular vs High Winrate](img/matchup_winrate_popular_winrate.png)
 
