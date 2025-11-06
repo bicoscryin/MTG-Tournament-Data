@@ -19,6 +19,7 @@ browser.set_window_size(2000,800)
 wait = WebDriverWait(browser, timeout=10)
 
 # Functions
+# these are changed from scraper_master to be able to take arguments for an outside source to scrape multiple tournaments
 def set_tournament_participants(url: str) -> pd.DataFrame:
     """Will get all participants for a tournament and save it in participant_loop_df"""
     # Prevents this function from running if the first player in the table has not loaded
@@ -276,3 +277,64 @@ def remove_duplicate_matches(full_match_results):
             unique_draw.loc[len(unique_draw)] = ele
     unique_full_results = pd.concat([unique_draw,unique_winner])
     return unique_full_results
+def decklist_filter(decklist: pd.DataFrame, participants: pd.DataFrame, str_list: list):
+    """Input two data frames and a list of strings. The beggining of the list are cards that define the archetype.
+    The Last item in the list will be the name you wish to use to rename all lists that fall in this filter."""
+    loop_deck = decklist.copy()
+    loop_participants = participants.copy()
+    for i in loop_deck[(loop_deck['Card Name'] == str_list[0]) | (loop_deck['Card Name'] == str_list[1]) | (loop_deck['Card Name'] == str_list[2])].groupby('Profile Name').size().index:
+        # print(f"The filter this loop is: {i}")
+        if loop_deck[(loop_deck['Card Name'] == str_list[0]) | (loop_deck['Card Name'] == str_list[1]) | (loop_deck['Card Name'] == str_list[2])].groupby('Profile Name').size()[i] == len(str_list) - 1:
+            loop_deck.loc[(loop_deck["Profile Name"] == i),"Deck Name"] = str_list[3]
+            loop_participants.loc[loop_participants["Player Profile Name"] == i,"Deck Name"] = str_list[3]
+    return loop_deck, loop_participants
+def convert_stringlist_to_numeric(numbers: str):
+    """Takes a string that used to be a list (ie '[1,2,3]') and turns it into a list of Integers"""
+    numbers =  numbers.replace("[", "").replace("]","").split(",")
+    num_list = [int(ele) for ele in numbers]
+    return num_list
+def tournament_date(location_str: str):
+    """Pulls out the date of the tournament from the folder name."""
+    t_date = "-".join(location_str.split("_")[-3:])
+    return pd.to_datetime(t_date)
+def set_winrate_per_deck_for_each_deck(decklists: pd.DataFrame, deck_names: list):
+    """Calculates the winrates of each deck matchup for each deck."""
+    loop_df = pd.DataFrame()
+    for deck in deck_names:
+        try: # Some decks never faced the same deck, it will error if that is the case
+            wins = decklists[(decklists["Winning Deck"] == deck)].groupby('Losing Deck').size().drop(deck)
+        except:
+            wins = decklists[(decklists["Winning Deck"] == deck)].groupby('Losing Deck').size()
+        try: # Some decks never faced the same deck, it will error if that is the case
+            loss = decklists[(decklists["Losing Deck"] == deck)].groupby('Winning Deck').size().drop(deck)
+        except:
+            loss = decklists[(decklists["Losing Deck"] == deck)].groupby('Winning Deck').size()
+        total = pd.concat([loss, wins], axis=1).fillna(0)
+        total['Total'] = total[0] + total[1]
+        total[deck] = total[1]/total["Total"]
+        total[total['Total'] > 2]
+        loop_df = pd.concat([loop_df, total[deck]], axis=1).fillna(0)
+    return loop_df
+def round_win_round_loss(rounds: pd.DataFrame, participants: pd.DataFrame, deck_names: list):
+    """This function returns a dataframe where each row is one game at one tournament.
+    Each game is has the round, who won and their deck, and who lost and their deck."""
+    #first thing is combine all_round_results and decklists so i can compare decklists
+    all_round_decklists = pd.DataFrame(columns=["Round", "Winning Player Name","Winning Deck", "Losing Player Name", "Losing Deck"])
+    #creates a dataframe with the round, the winner and their deck, and the loser and their deck
+    for ele in rounds.values:
+        for deck in deck_names:
+            for player in participants[participants["Deck Name"] == deck]["Player Profile Name"].values:
+                if ele[1] == 'Draw':
+                    break
+                if player == ele[1]:
+                    winner = player
+                    winning_deck = deck
+                if player == ele[3]:
+                    loser = player
+                    losing_deck = deck
+        tournament_round = ele[0]
+        try:
+            all_round_decklists.loc[len(all_round_decklists)] = [tournament_round, winner,winning_deck,loser,losing_deck]
+        except:
+            print(ele)
+    return all_round_decklists
