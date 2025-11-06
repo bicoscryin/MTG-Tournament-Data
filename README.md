@@ -15,4 +15,4 @@ The biggest cleaning issue was with "Deck Name". It appears to me that each indi
 The first thing we need to look at is what strategies are available for us to choose from. The two main ways that I looked at this is through popularity (total number of a specific strategy) and winrate of a specific strategy.
 
 ## Popularity
-![Strategy Popularity](https://via.placeholder.com/468x300?text=App+Screenshot+Here)
+![Strategy Popularity](img/strategy_popularity.png)
