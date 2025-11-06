@@ -24,7 +24,7 @@ This graph gives us an idea of what the top 10 strategies at a tournament would 
 
 ![Strategy Winrate](img/strategy_winrate.png)
 
-This graph shows the top 10 strategies that are winning at these tournaments. The most winning decks are Izzet Affinity, Amulet Titan, and Jeskai Blink. We need take a deeper look into why these decks are winning before we can make a descision. I'd like to highlight that Esper Goryo's and Izzet Prowess are missing from this graph despite being a very popular strategy choice. This could indicate that popular strategies are actually detrimental to your success since people are expecting that strategy to show up at the tournament. This graph doesn't fully answer that question.
+This graph shows the top 10 strategies that are winning at these tournaments. The most winning decks are Izzet Affinity, Amulet Titan, and Jeskai Blink. We need take a deeper look into why these decks are winning before we can make a descision. I'd like to highlight that Esper Goryo's and Izzet Prowess are missing from this graph despite being a very popular strategy choice. This could indicate that popular strategies are actually detrimental to your success since people are expecting that strategy to show up at the tournament.
 
 # Choosing a Deck
 
