@@ -317,7 +317,7 @@ def set_winrate_per_deck_for_each_deck(decklists: pd.DataFrame, deck_names: list
     return loop_df
 def round_win_round_loss(rounds: pd.DataFrame, participants: pd.DataFrame, deck_names: list):
     """This function returns a dataframe where each row is one game at one tournament.
-    Each game is has the round, who won and their deck, and who lost and their deck."""
+    Each game has the round, who won and their deck, and who lost and their deck."""
     #first thing is combine all_round_results and decklists so i can compare decklists
     all_round_decklists = pd.DataFrame(columns=["Round", "Winning Player Name","Winning Deck", "Losing Player Name", "Losing Deck"])
     #creates a dataframe with the round, the winner and their deck, and the loser and their deck
