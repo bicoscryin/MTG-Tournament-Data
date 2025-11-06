@@ -39,7 +39,7 @@ This next graph shows us how the high winrate strategies fair when they are matc
 
 # Recomendations
 
-I would recomend Amulet Titan solely on it's consistency against popular decks and higher winrate decks.
+I would recomend Amulet Titan solely on it's consistency against popular decks as well as higher winrate decks.
 
 # Future Research
 I would like to expand this data and look at strategy representation over time to predict what would most likely be at a tournament. This would allow more in-depth descisions such as deciding to use Neoform since there would be more good matchups and less bad matchups.
